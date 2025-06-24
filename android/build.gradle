@@ -1,26 +1,26 @@
 group 'io.flutter.plugins.videoplayer'
 version '1.0-SNAPSHOT'
-def args = ["-Xlint:deprecation","-Xlint:unchecked","-Werror"]
+def args = ["-Xlint:deprecation", "-Xlint:unchecked", "-Werror"]
 
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral() // Replaced jcenter() with mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:8.1.0' // Updated Gradle plugin version
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral() // Replaced jcenter() with mavenCentral()
     }
 }
 
-project.getTasks().withType(JavaCompile){
+project.getTasks().withType(JavaCompile) {
     options.compilerArgs.addAll(args)
 }
 
@@ -28,20 +28,18 @@ apply plugin: 'com.android.library'
 
 android {
     namespace 'com.lazyarts.vikram.cached_video_player'
-    compileSdkVersion 29
+    compileSdkVersion 33 // Updated to a more recent SDK version
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 21 // Updated to a more modern minimum SDK version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         disable 'InvalidPackage'
     }
-    android {
-        compileOptions {
-            sourceCompatibility 1.8
-            targetCompatibility 1.8
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11 // Updated to Java 11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     dependencies {
